@@ -176,7 +176,7 @@ tags: MySQL
 
 > 锁扩展 
 >
-> 表级锁（`table-level lock`）：`lock tables <table_name1>,<table_name2>... read/write`，`unlock tables <table_name1>,<table_name2>...`。其中`read`是共享锁，一旦锁定任何客户端都不可读；`write`是独占/写锁，只有加锁的客户端可读可写，其他客户端既不可读也不可写。锁定的是一张表或几张表。
+> 表级锁（`table-level lock`）：`lock tables <table_name1>,<table_name2>... read/write`，`unlock tables <table_name1>,<table_name2>...`。其中`read`是共享锁，锁定之后其他客户端也可以读，但是不能修改；`write`是独占/写锁，只有加锁的客户端可读可写，其他客户端既不可读也不可写。锁定的是一张表或几张表。
 >
 > 行级锁（`row-level lock`）：锁定的是一行或几行记录。共享锁：`select * from <table_name> where <条件> LOCK IN SHARE MODE;`，对查询的记录增加共享锁；`select * from <table_name> where <条件> FOR UPDATE;`，对查询的记录增加排他锁。这里**值得注意**的是：`innodb`的行锁，其实是一个子范围锁，依据条件锁定部分范围，而不是就映射到具体的行上，因此还有一个学名：间隙锁。比如`select * from stu where id < 20 LOCK IN SHARE MODE`会锁定`id`在`20`左右以下的范围，你可能无法插入`id`为`18`或`22`的一条新纪录。
 
