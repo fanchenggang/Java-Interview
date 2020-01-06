@@ -1579,7 +1579,7 @@ alter table table-name enable keys
 
 配置项：`slow_query_log`
 
-可以使用`show variables like ‘slov_query_log’`查看是否开启，如果状态值为`OFF`，可以使用`set GLOBAL slow_query_log = on`来开启，它会在`datadir`下产生一个`xxx-slow.log`的文件。
+可以使用`show variables like 'slov_query_log'`查看是否开启，如果状态值为`OFF`，可以使用`set GLOBAL slow_query_log = on`来开启，它会在`datadir`下产生一个`xxx-slow.log`的文件。
 
 ## 设置临界时间
 
